@@ -20,14 +20,9 @@ class Yatzee:
 
     def roll_dice(self):
         numbers = []
-        #for i in range(5):
-        #    numbers.append(random.randint(1,6)) #random.randint(1,6)
-        numbers.append(6)
-        numbers.append(6)
-        numbers.append(3)
-        numbers.append(3)
-        numbers.append(3)
-        self.dice_eyes = numbers #numbers
+        for i in range(5):
+            numbers.append(random.randint(1,6)) #random.randint(1,6)
+        self.dice_eyes = numbers
 
     def check_knumbers(self, k_numbers):
         new_numbers = []
