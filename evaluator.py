@@ -48,7 +48,7 @@ class Evaluator():
     def check_street(number, self):
         if number <= len(set(Evaluator.dices)):
             if number == 4:
-                if {1,2,3,4} == set(sorted(Evaluator.dices)) or {2,3,4,5} == set(sorted(Evaluator.dices)) or {3,4,5,6} == set(sorted(Evaluator.dices)):
+                if {1,2,3,4} <= set(sorted(Evaluator.dices)) or {2,3,4,5} <= set(sorted(Evaluator.dices)) or {3,4,5,6} <= set(sorted(Evaluator.dices)):
                     self.points = 30
                     return True
                 else:
@@ -118,7 +118,7 @@ class Evaluator():
                 player.LOWER_SECTION['three_of_a_kind'] = self.points
             elif strategy == "four_of_a_kind" and Evaluator.count_kinds(4, self):
                 player.LOWER_SECTION['four_of_a_kind'] = self.points
-            elif strategy == "full_house" and Evaluator.check_full_house(Evaluator):
+            elif strategy == "full_house" and Evaluator.check_full_house(self):
                 player.LOWER_SECTION['full_house'] = self.points
             elif strategy == "small_street" and Evaluator.check_street(4, self):
                 player.LOWER_SECTION['small_street'] = self.points

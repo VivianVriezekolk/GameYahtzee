@@ -18,7 +18,7 @@ class Main():
                     self.loop(player, roll)
                 player.amount_of_throwns = 0
         player = self.yahtzee.determine_winner()
-        print(str(player.name) + ' heeft gewonnen met ' + str(player.total_score))
+        print(str(player.name) + ' heeft gewonnen met ' + str(player.total_score) + ' punten!')
 
     def loop(self, player, roll):
         if int(roll) == 0 or player.amount_of_throwns == 2:
