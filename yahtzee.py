@@ -12,7 +12,7 @@ class Yatzee:
         amount_of_players = input()
 
         for player_number in range(int(amount_of_players)):
-            print("What is the name of player " + str(player_number) + " ?")
+            print("What is the name of player " + str(player_number+1) + " ?")
             player = players.Player()
             player.player_number = player_number
             player.name = input()

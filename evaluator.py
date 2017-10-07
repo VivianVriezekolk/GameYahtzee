@@ -9,25 +9,27 @@ class Evaluator():
     def wrong_strategy(self):
         choice = input("Are you sure you want to do this? Your score would be zero, type 1 to choose another strategy and otherwise 0!")
         if int(choice) == 1:
-            strategy = input("Type your new strategy")
-            Evaluator.evaluate_strategy(self, strategy, self.player)
+            newStrategy = input("Type your new strategy \n")
+            Evaluator.evaluate_strategy(self, newStrategy, self.player)
+            return True
         else:
             self.points = 0
+            return False
 
     def count_number(number, self):
         occurence = Evaluator.dices.count(number)
-        print(str(occurence))
         if occurence == 0:
-            Evaluator.wrong_strategy(self)
+            return not Evaluator.wrong_strategy(self)
         else:
             self.points = occurence * number
+            return True
 
     def count_kinds(number, self):
         for dice_eye in Evaluator.dices:
             if Evaluator.dices.count(dice_eye) <= number:
                 self.points = sum(Evaluator.dices)
-                return
-        Evaluator.wrong_strategy(self)
+                return True
+        return not Evaluator.wrong_strategy(self)
 
     def check_full_house(self):
         twoValues = False
@@ -39,27 +41,31 @@ class Evaluator():
                 threeValues = True
         if twoValues and threeValues:
             self.points = 25
+            return True
         else:
-            Evaluator.wrong_strategy(self)
+            return not Evaluator.wrong_strategy(self)
 
     def check_street(number, self):
         if number <= len(set(Evaluator.dices)):
             if number == 4:
-                print(set(sorted(Evaluator.dices)))
                 if {1,2,3,4} == set(sorted(Evaluator.dices)) or {2,3,4,5} == set(sorted(Evaluator.dices)) or {3,4,5,6} == set(sorted(Evaluator.dices)):
                     self.points = 30
+                    return True
+                else:
+                    return not Evaluator.wrong_strategy(self)
             else:
-                print(set(sorted(Evaluator.dices)))
                 if {1,2,3,4,5} == set(sorted(Evaluator.dices)) or {2,3,4,5,6} == set(sorted(Evaluator.dices)):
                     self.points = 40
+                    return True
         else:
-            Evaluator.wrong_strategy(self)
+            return not Evaluator.wrong_strategy(self)
 
     def check_yahtzee(self):
         if len(set(Evaluator.dices)) == 1:
             self.points = 50
+            return True
         else:
-            Evaluator.wrong_strategy(self)
+            return not Evaluator.wrong_strategy(self)
 
     def is_strategy_filled(self, strategy):
         for strategyA in self.player.UPPER_SECTION:
@@ -96,51 +102,32 @@ class Evaluator():
             strategy = input("choose another strategy! \n")
             Evaluator.evaluate_strategy(self, strategy, player)
         else:
-            if strategy == "ones":
-                Evaluator.count_number(1, self)
+            if (strategy == "ones") and Evaluator.count_number(1, self):
                 player.UPPER_SECTION['ones'] = self.points
-            elif strategy == "twos":
-                Evaluator.count_number(2, self)
+            elif (strategy == "twos") and Evaluator.count_number(2, self):
                 player.UPPER_SECTION['twos'] = self.points
-            elif strategy == "threes":
-                Evaluator.count_number(3, self)
+            elif (strategy == "threes") and Evaluator.count_number(3, self):
                 player.UPPER_SECTION['threes'] = self.points
-            elif strategy == "fours":
-                Evaluator.count_number(4, self)
+            elif (strategy == "fours") and Evaluator.count_number(4, self):
                 player.UPPER_SECTION['fours'] = self.points
-            elif strategy == "fives":
-                Evaluator.count_number(5, self)
+            elif (strategy == "fives") and Evaluator.count_number(5, self):
                 player.UPPER_SECTION['fives'] = self.points
-            elif strategy == "sixes":
-                Evaluator.count_number(6, self)
+            elif (strategy == "sixes") and Evaluator.count_number(6, self):
                 player.UPPER_SECTION['sixes'] = self.points
-            elif strategy == "three_of_a_kind":
-                Evaluator.count_kinds(3, self)
+            elif (strategy == "three_of_a_kind") and Evaluator.count_kinds(3, self):
                 player.LOWER_SECTION['three_of_a_kind'] = self.points
-            elif strategy == "four_of_a_kind":
-                Evaluator.count_kinds(4, self)
+            elif strategy == "four_of_a_kind" and Evaluator.count_kinds(4, self):
                 player.LOWER_SECTION['four_of_a_kind'] = self.points
-            elif strategy == "full_house":
-                Evaluator.check_full_house(Evaluator)
+            elif strategy == "full_house" and Evaluator.check_full_house(Evaluator):
                 player.LOWER_SECTION['full_house'] = self.points
-            elif strategy == "small_street":
-                Evaluator.check_street(4, self)
+            elif strategy == "small_street" and Evaluator.check_street(4, self):
                 player.LOWER_SECTION['small_street'] = self.points
-            elif strategy == "large_street":
-                Evaluator.check_street(5, self)
+            elif strategy == "large_street" and Evaluator.check_street(5, self):
                 player.LOWER_SECTION['large_street'] = self.points
-            elif strategy == "yahtzee":
-                Evaluator.check_yahtzee(self)
+            elif strategy == "yahtzee" and Evaluator.check_yahtzee(self):
                 player.LOWER_SECTION['yahtzee'] = self.points
             elif strategy == "chance":
                 player.LOWER_SECTION['chance'] = sum(Evaluator.dices)
-            else:
-                print("this is not a valid strategy, choose from: \n")
-                print(player.LOWER_SECTION.keys())
-                print(player.UPPER_SECTION.keys())
-                strategy = input("choose another strategy! \n")
-                Evaluator.evaluate_strategy(self, strategy, player)
-
 
 
 
