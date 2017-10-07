@@ -59,8 +59,8 @@ class Yatzee:
     def determine_winner(self):
         highest_score = 0
         best_player = ''
-        for score, player in self.players:
-            if highest_score < player.totalScore:
-                highest_score = player.totalScore
+        for player in self.players:
+            if highest_score < player.total_score:
+                highest_score = player.total_score
                 best_player = player
         return best_player
