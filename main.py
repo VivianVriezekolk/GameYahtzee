@@ -14,7 +14,7 @@ class Main():
                 self.yahtzee.roll_dice()
                 while player.amount_of_throwns < 3:
                     print(self.yahtzee.dice_eyes)
-                    roll = input('Do you want to stop or try to get a higher score? Typ 0 for stop and 1 otherwise \n')
+                    roll = input('Do you want to stop or try to get a higher score? Type 0 for stop and 1 otherwise. \n')
                     self.loop(player, roll)
                 player.amount_of_throwns = 0
         player = self.yahtzee.determine_winner()
@@ -30,7 +30,7 @@ class Main():
             print(player.LOWER_SECTION)
             player.amount_of_throwns = 3
         else:
-            numbers = input("Typ the numbers you want to keep like this: 11 \n")
+            numbers = input("Type the numbers you want to roll again like this: 11 \n")
             self.yahtzee.roll_again(numbers)
             player.amount_of_throwns +=1
 
