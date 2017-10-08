@@ -6,18 +6,6 @@ class Yatzee:
         self.players = []
         self.dice_eyes = []
 
-    def amount_of_players(self):
-        print("Welcome to Yatzee")
-        print("With how many players do you want to play?")
-        amount_of_players = input()
-
-        for player_number in range(int(amount_of_players)):
-            print("What is the name of player " + str(player_number+1) + "?")
-            player = players.Player()
-            player.player_number = player_number
-            player.name = input()
-            self.players.append(player)
-
     def roll_dice(self):
         numbers = []
         for i in range(5):
