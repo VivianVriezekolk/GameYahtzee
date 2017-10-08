@@ -12,7 +12,7 @@ class Yatzee:
         amount_of_players = input()
 
         for player_number in range(int(amount_of_players)):
-            print("What is the name of player " + str(player_number+1) + " ?")
+            print("What is the name of player " + str(player_number+1) + "?")
             player = players.Player()
             player.player_number = player_number
             player.name = input()
@@ -37,21 +37,19 @@ class Yatzee:
         else:
             return False
 
-    def remove_die_from_dice_eyes(self, k_number):
+    def roll_dices(self, k_number):
         new_dices = []
+        length = len(k_number)
         for index, number in enumerate(self.dice_eyes):
-            if str(number) not in k_number:
-                new_dices.append(number)
-        return new_dices
+            if str(number) in k_number and length != 0:
+                self.dice_eyes[index] = random.randint(1, 6)
+                length -= 1
+        return self.dice_eyes
 
     def roll_again(self, k_numbers):
         if Yatzee.check_knumbers(self, k_numbers):
-            maintained_eyes = Yatzee.remove_die_from_dice_eyes(self, k_numbers)
-            n_numbers = []
-            for i in range(len(k_numbers)):
-                n_numbers.append(random.randint(1, 6))
-            [n_numbers.append(int(n)) for n in maintained_eyes]
-            self.dice_eyes = n_numbers
+            new_eyes = Yatzee.roll_dices(self, k_numbers)
+            self.dice_eyes = new_eyes
         else:
             print("You did not roll these dice eyes. \n")
             numbers = input("Type the eyes you want to roll again like this: 11. \n")
