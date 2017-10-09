@@ -7,7 +7,7 @@ class Main():
 
     def __init__(self):
         self.yahtzee = yahtzee.Yatzee()
-        self.view = consoleview.ConsoleView(yahtzee)
+        self.view = consoleview.ConsoleView(self.yahtzee)
 
     def startGame(self):
         self.amount_of_players()
@@ -28,11 +28,13 @@ class Main():
         amount_of_players = self.view.ask_amount_players()
 
         for player_number in range(int(amount_of_players)):
-           print("What is the name of player " + str(player_number + 1) + "?")
-           player = players.Player()
-           player.player_number = player_number
-           player.name = input()
-           self.yahtzee.players.append(player)
+            player = players.Player()
+            player.player_number = player_number
+            self.yahtzee.players.append(player)
+
+        names = self.view.ask_name_of_players()
+        for player in self.yahtzee.players:
+                player.name = names[player.player_number]
 
     def loop(self, player, roll):
         if roll == 'stop' or player.amount_of_throwns == 2:
