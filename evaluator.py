@@ -26,7 +26,7 @@ class Evaluator():
 
     def count_kinds(number, self):
         for dice_eye in Evaluator.dices:
-            if Evaluator.dices.count(dice_eye) <= number:
+            if Evaluator.dices.count(dice_eye) >= number:
                 self.points = sum(Evaluator.dices)
                 return True
         return not Evaluator.wrong_strategy(self)
