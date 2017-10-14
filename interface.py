@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import *
-import Image
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 
 class Interface():
     def __init__(self, model):
@@ -14,7 +13,8 @@ class Interface():
         self.var = StringVar()
         self.label = tk.Label(self.top, textvariable=self.var, relief=tk.FLAT)
         self.entry = tk.Entry()
-        self.buttonEntry = tk.Button(self.top, text="play", command=self.ask_amount_players)
+        self.buttonEntry = tk.Button(self.top, text="play", command=self.amount_players)
+        self.amount_players = 0
 
     def welcome_message(self):
         self.frame.pack()
@@ -29,16 +29,15 @@ class Interface():
         self.entry.pack(side=TOP)
         self.buttonEntry.pack()
 
-    def ask_amount_players(self):
-
-
-
-        print("With how many players do you want to play?")
+    def amount_players(self):
         amount_of_players = input()
-        return amount_of_players
+        self.amount_players = amount_of_players
 
     def ask_name_of_players(self):
         names = []
         for player in self.yahtzee.players:
             names.append(input("What is the name of the player " + str(player.player_number + 1) + "? \n"))
         return names
+
+    def printScores(self):
+        print(self.yahtzee.dice_eyes)

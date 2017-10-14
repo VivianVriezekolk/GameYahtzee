@@ -5,12 +5,13 @@ class Yatzee:
     def __init__(self):
         self.players = []
         self.dice_eyes = []
+        self.winner = None
 
     def roll_dice(self):
         numbers = []
         for i in range(5):
             numbers.append(random.randint(1,6))
-        self.dice_eyes = [5,5,5,5,5]
+        self.dice_eyes = numbers
 
     def check_knumbers(self, k_numbers):
         new_numbers = []
@@ -26,7 +27,6 @@ class Yatzee:
             return False
 
     def roll_dices(self, k_number):
-        new_dices = []
         length = len(k_number)
         for index, number in enumerate(self.dice_eyes):
             if str(number) in k_number and length != 0:
@@ -56,4 +56,4 @@ class Yatzee:
             if highest_score < player.total_score:
                 highest_score = player.total_score
                 best_player = player
-        return best_player
+        self.winner = best_player

@@ -16,3 +16,9 @@ class ConsoleView():
         for player in self.yahtzee.players:
             names.append(input("What is the name of the player " + str(player.player_number + 1) + "? \n"))
         return names
+
+    def printScores(self):
+        print(self.yahtzee.dice_eyes)
+
+    def print_winner_of_game(self):
+        print(self.yahtzee.winner + " heeft gewonnen met " + self.yahtzee.winner.total_score + " punten!")

@@ -1,13 +1,13 @@
 import yahtzee
 import evaluator
 import players
-import interface
+import consoleview
 
 class Main():
 
     def __init__(self):
         self.yahtzee = yahtzee.Yatzee()
-        self.view = interface.Interface(self.yahtzee)
+        self.view = consoleview.ConsoleView(self.yahtzee)
 
     def startGame(self):
         self.amount_of_players()
@@ -16,15 +16,15 @@ class Main():
                 print('\n' + player.name + " is going to roll the dice. \n")
                 self.yahtzee.roll_dice()
                 while player.amount_of_throwns < 3:
-                    print(self.yahtzee.dice_eyes)
+                    self.view.printScores()
                     if(player.amount_of_throwns == 2):
                         print('End of turn.')
                     else:
                         roll = input('Do you want to stop or try to get a higher score? Type "stop" to stop or type the numbers you want to roll again. \n')
                     self.loop(player, roll)
                 player.amount_of_throwns = 0
-        player = self.yahtzee.determine_winner()
-        print(str(player.name) + ' heeft gewonnen met ' + str(player.total_score) + ' punten!')
+        self.yahtzee.determine_winner()
+        self.view.print_winner_of_game()
 
     def amount_of_players(self):
         self.view.welcome_message()
