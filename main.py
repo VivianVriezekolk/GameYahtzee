@@ -17,7 +17,10 @@ class Main():
                 self.yahtzee.roll_dice()
                 while player.amount_of_throwns < 3:
                     print(self.yahtzee.dice_eyes)
-                    roll = input('Do you want to stop or try to get a higher score? Type "stop" to stop and "again" to roll again. \n')
+                    if(player.amount_of_throwns == 2):
+                        print('End of turn.')
+                    else:
+                        roll = input('Do you want to stop or try to get a higher score? Type "stop" to stop or type the numbers you want to roll again. \n')
                     self.loop(player, roll)
                 player.amount_of_throwns = 0
         player = self.yahtzee.determine_winner()
@@ -45,12 +48,11 @@ class Main():
             print(player.name, player.UPPER_SECTION)
             print(player.LOWER_SECTION)
             player.amount_of_throwns = 3
-        elif roll == 'again':
-            numbers = input("Type the numbers you want to roll again like this: 11 \n")
-            self.yahtzee.roll_again(numbers)
+        elif roll.isdigit():
+            self.yahtzee.roll_again(roll)
             player.amount_of_throwns +=1
         else:
-            roll = input('Your input is not "again" or "stop", type stop or again to continue your turn. \n')
+            roll = input('Your input is not "stop" or numbers that you want to roll again, type stop or the dice you want to roll again to continue your turn. \n')
             self.loop(player, roll)
 
 main = Main()

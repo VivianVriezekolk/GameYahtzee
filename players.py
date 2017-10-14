@@ -35,7 +35,7 @@ class Player():
         #self.convertNoneScore()
         score = sum(self.UPPER_SECTION.values())
         if score > 63:
-            score = score + 50
+            score = score + 35
         return score + sum(self.LOWER_SECTION.values())
 
     def fullCard(self):

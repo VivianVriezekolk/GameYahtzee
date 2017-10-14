@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Yahtzee.iml" filepath="$PROJECT_DIR$/.idea/Yahtzee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Yahtzee/.idea/Yahtzee.iml" filepath="$PROJECT_DIR$/../Yahtzee/.idea/Yahtzee.iml" />
       <module fileurl="file://C:\Users\Vivian\PycharmProjects\Yahtzee\.idea\doSomethingWeird.iml" filepath="C:\Users\Vivian\PycharmProjects\Yahtzee\.idea\doSomethingWeird.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../joticabins/.idea/joticabins.iml" filepath="$PROJECT_DIR$/../joticabins/.idea/joticabins.iml" />
     </modules>
   </component>
 </project>
