@@ -95,7 +95,7 @@ class Evaluator():
             print(player.UPPER_SECTION.keys())
             strategy = input("choose another strategy! \n")
             Evaluator.evaluate_strategy(self, strategy, player)
-        elif Evaluator.is_strategy_filled(self, strategy) == True:
+        elif Evaluator.is_strategy_filled(self, strategy) == True and strategy != 'yahtzee':
             print("You already used this strategy, choose a new strategy: \n")
             print(player.LOWER_SECTION.keys())
             print(player.UPPER_SECTION.keys())
@@ -125,7 +125,11 @@ class Evaluator():
             elif strategy == "large_street" and Evaluator.check_street(5, self):
                 player.LOWER_SECTION['large_street'] = self.points
             elif strategy == "yahtzee" and Evaluator.check_yahtzee(self):
-                player.LOWER_SECTION['yahtzee'] = self.points
+                if Evaluator.is_strategy_filled(self, 'yahtzee') == True:
+                    print(self.points + 50)
+                    player.LOWER_SECTION['yahtzee'] = self.points + 100
+                else:
+                    player.LOWER_SECTION['yahtzee'] = self.points
             elif strategy == "chance":
                 player.LOWER_SECTION['chance'] = sum(Evaluator.dices)
 

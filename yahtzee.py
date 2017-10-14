@@ -10,7 +10,7 @@ class Yatzee:
         numbers = []
         for i in range(5):
             numbers.append(random.randint(1,6))
-        self.dice_eyes = numbers
+        self.dice_eyes = [5,5,5,5,5]
 
     def check_knumbers(self, k_numbers):
         new_numbers = []

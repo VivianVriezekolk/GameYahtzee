@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+import Image
 from PIL import Image, ImageTk
 
 class Interface():

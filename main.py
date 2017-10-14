@@ -1,19 +1,19 @@
 import yahtzee
 import evaluator
 import players
-import consoleview
+import interface
 
 class Main():
 
     def __init__(self):
         self.yahtzee = yahtzee.Yatzee()
-        self.view = consoleview.ConsoleView(self.yahtzee)
+        self.view = interface.Interface(self.yahtzee)
 
     def startGame(self):
         self.amount_of_players()
         while not(self.yahtzee.game_ended()):
             for player in self.yahtzee.players:
-                print('\n' + player.name + " is going to roll the dices. \n")
+                print('\n' + player.name + " is going to roll the dice. \n")
                 self.yahtzee.roll_dice()
                 while player.amount_of_throwns < 3:
                     print(self.yahtzee.dice_eyes)
